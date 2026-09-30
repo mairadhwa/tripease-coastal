@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripEase Coastal · Community coastal trips in Indonesia</title>
+  <meta name="description" content="Book community-run coastal trips in Indonesia's non-mainstream destinations. Verified by Pokdarwis and BUMDes, with 20% of every booking going to conservation.">
+  <meta property="og:title" content="TripEase Coastal">
+  <meta property="og:description" content="Community-run coastal trips in Indonesia, verified by local institutions.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/data.js" defer></script>
+  <script src="js/assistant.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="TripEase Coastal home">
+        <svg class="logo__mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="currentColor"/>
+          <path d="M6 18c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M6 23c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/>
+          <circle cx="21" cy="10" r="3" fill="#fff"/>
+        </svg>
+        TripEase <span>Coastal</span>
+      </a>
+
+      <nav class="nav" aria-label="Main">
+        <a href="#trips">Trips</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#impact">Impact</a>
+        <a href="#assistant">Phrase assistant</a>
+        <a href="#partners">For partners</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#trips" class="btn btn--primary btn--sm header__cta">Explore trips</a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+      <a href="#trips">Trips</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#impact">Impact</a>
+      <a href="#assistant">Phrase assistant</a>
+      <a href="#partners">For partners</a>
+      <a href="#trips" class="btn btn--primary">Explore trips</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <div>
+          <p class="eyebrow">Community-based coastal tourism · Indonesia</p>
+          <h1>Travel the coast with the people who live there.</h1>
+          <p class="lead">Book trips run by fishing and island villages you won't find on the usual itinerary. Every host is verified by their village's Pokdarwis or BUMDes, and 20% of every booking stays in the destination for conservation.</p>
+
+          <form class="search" id="searchForm" role="search" aria-label="Find a trip">
+            <div class="search__field">
+              <label for="searchWhere">Where</label>
+              <select id="searchWhere">
+                <option value="any">Any destination</option>
+              </select>
+            </div>
+            <div class="search__field">
+              <label for="searchDate">When</label>
+              <input type="date" id="searchDate">
+            </div>
+            <div class="search__field">
+              <label for="searchGuests">Guests</label>
+              <select id="searchGuests">
+                <option value="1">1 guest</option>
+                <option value="2" selected>2 guests</option>
+                <option value="3">3 guests</option>
+                <option value="4">4 guests</option>
+                <option value="6">6 guests</option>
+                <option value="8">8 guests</option>
+              </select>
+            </div>
+            <div class="search__submit">
+              <button type="submit" class="btn btn--primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                Search
+              </button>
+            </div>
+          </form>
+
+          <ul class="trust">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Hosts verified by local institutions</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>English-speaking local guides</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>Daily visitor limits</li>
+          </ul>
+        </div>
+
+        <figure class="hero__media">
+          <!-- Replace with your own photo, e.g. assets/hero.jpg -->
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1000" alt="A quiet tropical beach with clear water" onerror="this.remove()">
+          <figcaption class="hero__caption">
+            <strong>3 partner villages</strong>
+            <span>Bangka Belitung · Yogyakarta · Thousand Islands</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Trips catalog -->
+    <section class="section section--soft" id="trips">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="h2">Coastal trips</h2>
+            <p class="muted" id="resultCount">3 trips</p>
+          </div>
+          <div class="chips" id="themeChips" role="group" aria-label="Filter by theme"></div>
+        </div>
+
+        <div class="grid" id="tripGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head section-head--stack">
+          <h2 class="h2">How TripEase Coastal works</h2>
+          <p class="lead">We don't sign up businesses one by one. We work through each village's own tourism group (Pokdarwis) or village enterprise (BUMDes), so the community stays in charge.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num">01</span>
+            <h3>Local onboarding</h3>
+            <p>Pokdarwis or BUMDes identify and verify homestays, boat operators, cooks and craft makers before they are listed.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">02</span>
+            <h3>Guide training</h3>
+            <p>Guides get basic English, hospitality and safety training through university partners, KKN and internship programmes.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">03</span>
+            <h3>Online booking</h3>
+            <p>Travellers compare open or private trips, see exactly what is included, and pay online before they arrive.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">04</span>
+            <h3>The trip</h3>
+            <p>A verified local guide leads every trip. Daily limits keep visitor numbers within what each site can handle.</p>
+          </li>
+          <li class="step">
+            <span class="step__num">05</span>
+            <h3>Impact reporting</h3>
+            <p>Travellers rate the trip, and the conservation share of every booking is reported back to the village and to you.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Impact tracker -->
+    <section class="section section--soft" id="impact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 class="h2">Impact tracker</h2>
+            <p class="muted">Pilot projection across three partner villages.</p>
+          </div>
+          <span class="tag">Simulated data</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <p class="stat__label">Bookings completed</p>
+            <p class="stat__value" data-counter data-target="1248">0</p>
+            <p class="stat__note">Across 3 villages</p>
+          </div>
+          <div class="stat">
+            <p class="stat__label">Paid to local operators</p>
+            <p class="stat__value" data-counter data-target="812" data-prefix="IDR " data-suffix="M">IDR 0M</p>
+            <p class="stat__note">70% of booking value</p>
+          </div>
+          <div class="stat">
+            <p class="stat__label">Conservation fund</p>
+            <p class="stat__value stat__value--eco" data-counter data-target="232" data-prefix="IDR " data-suffix="M">IDR 0M</p>
+            <p class="stat__note">20% of booking value</p>
+          </div>
+          <div class="stat">
+            <p class="stat__label">Local guides certified</p>
+            <p class="stat__value" data-counter data-target="46">0</p>
+            <div class="progress" aria-label="46 of 60 guides certified"><div class="progress__fill" data-bar data-width="77"></div></div>
+            <p class="stat__note">46 of 60 enrolled</p>
+          </div>
+        </div>
+
+        <div class="panel split">
+          <div class="split__intro">
+            <h3>Where every Rp 1.000.000 goes</h3>
+            <p class="muted">The split is agreed with each partner village and shown at checkout on every booking.</p>
+          </div>
+          <div class="split__chart">
+            <div class="split-bar" role="img" aria-label="70% local operators, 20% conservation, 10% platform">
+              <div class="split-bar__seg split-bar__seg--local" data-bar data-width="70"></div>
+              <div class="split-bar__seg split-bar__seg--eco" data-bar data-width="20"></div>
+              <div class="split-bar__seg split-bar__seg--platform" data-bar data-width="10"></div>
+            </div>
+            <dl class="legend">
+              <div><dt><i class="dot dot--local"></i>Local operators</dt><dd><strong>Rp 700.000</strong><span>Homestays, boats, cooks, guides</span></dd></div>
+              <div><dt><i class="dot dot--eco"></i>Conservation</dt><dd><strong>Rp 200.000</strong><span>Reef, mangrove and waste programmes</span></dd></div>
+              <div><dt><i class="dot dot--platform"></i>Platform</dt><dd><strong>Rp 100.000</strong><span>Marketing, booking and payments</span></dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Phrase assistant -->
+    <section class="section" id="assistant">
+      <div class="container assistant">
+        <div class="assistant__intro">
+          <h2 class="h2">Phrase &amp; culture assistant</h2>
+          <p class="lead">Ask how to say something or how to behave in a coastal village. You'll get an Indonesian phrase, how to pronounce it, and a short tip from local hosts.</p>
+          <p class="suggest-label">Try asking</p>
+          <ul class="suggestions" id="suggestions">
+            <li><button type="button" data-q="How do I greet a village elder?">How do I greet a village elder?</button></li>
+            <li><button type="button" data-q="How do I ask the price of a souvenir?">How do I ask the price of a souvenir?</button></li>
+            <li><button type="button" data-q="Can I take photos of the fishermen?">Can I take photos of the fishermen?</button></li>
+            <li><button type="button" data-q="What should I wear in the village?">What should I wear in the village?</button></li>
+            <li><button type="button" data-q="Any tips for snorkelling on the reef?">Any tips for snorkelling on the reef?</button></li>
+          </ul>
+        </div>
+
+        <div class="chat">
+          <div class="chat__head">
+            <span class="avatar" aria-hidden="true">TE</span>
+            <div>
+              <strong>TripEase assistant</strong>
+              <span class="chat__status" id="chatStatus">Usually replies in a few seconds</span>
+            </div>
+          </div>
+          <div class="chat__body" id="chatBody" aria-live="polite">
+            <div class="msg msg--bot">
+              <p>Hi! Ask me anything about local phrases, etiquette, food or the reef before your trip.</p>
+            </div>
+          </div>
+          <form class="chat__form" id="chatForm">
+            <label for="chatInput" class="sr-only">Your question</label>
+            <input type="text" id="chatInput" class="input" placeholder="Ask a question in English" autocomplete="off">
+            <button type="submit" class="btn btn--primary" id="chatSend" disabled>Ask</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="section section--soft" id="partners">
+      <div class="container partners">
+        <div>
+          <h2 class="h2">List your homestay, boat or guiding service</h2>
+          <p class="lead">TripEase Coastal partners with village institutions, not individual businesses. Register through your Pokdarwis or BUMDes and they will verify your listing.</p>
+          <ul class="checklist">
+            <li><strong>70% of every booking</strong> goes to local operators</li>
+            <li><strong>Free English and hospitality training</strong> for guides</li>
+            <li><strong>Your village sets</strong> daily visitor limits</li>
+            <li><strong>No upfront fee.</strong> The platform only earns a 10% commission</li>
+          </ul>
+        </div>
+
+        <div class="panel form-card">
+          <form id="partnerForm" novalidate>
+            <h3>Partner registration</h3>
+            <p class="muted small">Prototype form. Nothing is sent.</p>
+
+            <div class="field">
+              <label for="pName">Business or guide name</label>
+              <input id="pName" class="input" type="text" autocomplete="organization" required>
+              <p class="field__error">Please enter a name.</p>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="pType">Service type</label>
+                <select id="pType" class="input" required>
+                  <option value="">Select…</option>
+                  <option>Homestay</option>
+                  <option>Boat operator</option>
+                  <option>Local guide</option>
+                  <option>Food &amp; culinary</option>
+                  <option>Handicrafts</option>
+                </select>
+                <p class="field__error">Choose a service type.</p>
+              </div>
+              <div class="field">
+                <label for="pInst">Verified through</label>
+                <select id="pInst" class="input" required>
+                  <option value="">Select…</option>
+                  <option>Pokdarwis</option>
+                  <option>BUMDes</option>
+                </select>
+                <p class="field__error">Choose an institution.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="pVillage">Village and regency</label>
+              <input id="pVillage" class="input" type="text" placeholder="e.g. Desa Tanjung Binga, Belitung" required>
+              <p class="field__error">Please enter your village.</p>
+            </div>
+            <div class="field">
+              <label for="pEmail">Contact email</label>
+              <input id="pEmail" class="input" type="email" autocomplete="email" required>
+              <p class="field__error">Enter a valid email address.</p>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block" id="partnerSubmit">Submit for verification</button>
+          </form>
+
+          <div class="form-success" id="partnerSuccess" hidden>
+            <span class="success-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+            <h3>Application received</h3>
+            <p class="muted" id="partnerSuccessText"></p>
+            <ol class="timeline">
+              <li class="is-done">Application submitted</li>
+              <li>Verification visit by your institution</li>
+              <li>Listing review and photos</li>
+              <li>Live on TripEase Coastal</li>
+            </ol>
+            <button type="button" class="btn btn--secondary btn--block" id="partnerReset">Register another service</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#top" class="logo">
+          <svg class="logo__mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M6 18c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M6 23c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/><circle cx="21" cy="10" r="3" fill="#fff"/></svg>
+          TripEase <span>Coastal</span>
+        </a>
+        <p class="muted small">Community-based coastal marine tourism under the Agromaritime 5.0 framework.</p>
+      </div>
+      <div>
+        <h4>Travel</h4>
+        <ul>
+          <li><a href="#trips">All trips</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#assistant">Phrase assistant</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Communities</h4>
+        <ul>
+          <li><a href="#partners">Become a partner</a></li>
+          <li><a href="#impact">Impact tracker</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>© <span id="year">2026</span> TripEase Coastal</p>
+      <p>Prototype for the 9th IPB Business Festival 2026. No real bookings or payments are processed.</p>
+    </div>
+  </footer>
+
+  <!-- Booking dialog -->
+  <dialog class="modal" id="bookingModal" aria-labelledby="bookingTitle">
+    <div class="modal__scroll">
+      <div class="modal__head">
+        <img class="modal__thumb" id="bkThumb" src="" alt="" onerror="this.style.visibility='hidden'">
+        <div>
+          <p class="muted small" id="bkLocation"></p>
+          <h2 class="modal__title" id="bookingTitle"></h2>
+          <p class="muted small" id="bkMeta"></p>
+        </div>
+        <button type="button" class="icon-btn modal__close" data-close aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 1: checkout form -->
+      <form id="bookingForm" novalidate>
+        <div class="modal__body">
+          <fieldset class="segmented">
+            <legend class="field-label">Trip type</legend>
+            <label>
+              <input type="radio" name="tripType" value="open" checked>
+              <strong>Open trip</strong>
+              <span>Join a small shared group</span>
+            </label>
+            <label>
+              <input type="radio" name="tripType" value="private">
+              <strong>Private trip</strong>
+              <span id="bkPrivateNote">Own boat and guide</span>
+            </label>
+          </fieldset>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="bkDate">Date</label>
+              <input type="date" id="bkDate" class="input" required>
+            </div>
+            <div class="field">
+              <span class="field-label" id="guestsLabel">Guests</span>
+              <div class="stepper" role="group" aria-labelledby="guestsLabel">
+                <button type="button" class="icon-btn" id="guestMinus" aria-label="Remove a guest">−</button>
+                <output id="guestCount">1</output>
+                <button type="button" class="icon-btn" id="guestPlus" aria-label="Add a guest">+</button>
+              </div>
+            </div>
+          </div>
+          <p class="quota" id="bkQuota"></p>
+
+          <div class="summary">
+            <div class="summary__row"><span id="sumBaseLabel"></span><span id="sumBase"></span></div>
+            <div class="summary__row" id="sumPrivateRow" hidden><span>Private boat and guide</span><span id="sumPrivate"></span></div>
+            <div class="summary__row"><span>Local guide and English support</span><span class="text-accent">Included</span></div>
+            <div class="summary__row summary__total"><span>Total</span><span><strong id="sumTotal"></strong><small id="sumUsd"></small></span></div>
+
+            <div class="summary__split">
+              <p class="field-label">Where your money goes</p>
+              <div class="split-bar split-bar--sm" aria-hidden="true">
+                <div class="split-bar__seg split-bar__seg--local" style="width:70%"></div>
+                <div class="split-bar__seg split-bar__seg--eco" style="width:20%"></div>
+                <div class="split-bar__seg split-bar__seg--platform" style="width:10%"></div>
+              </div>
+              <div class="mini-legend">
+                <span><i class="dot dot--local"></i>Community <b id="splitLocal"></b></span>
+                <span><i class="dot dot--eco"></i>Conservation <b id="splitEco"></b></span>
+                <span><i class="dot dot--platform"></i>Platform <b id="splitPlatform"></b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="bkName">Full name</label>
+            <input type="text" id="bkName" class="input" autocomplete="name" required>
+            <p class="field__error">Please enter your full name.</p>
+          </div>
+          <div class="field">
+            <label for="bkEmail">Email</label>
+            <input type="email" id="bkEmail" class="input" autocomplete="email" required>
+            <p class="field__error" id="bkEmailError">Enter a valid email so we can send your ticket.</p>
+          </div>
+          <div class="field">
+            <label for="bkPhone">WhatsApp <span class="optional">optional</span></label>
+            <input type="tel" id="bkPhone" class="input" autocomplete="tel" placeholder="+44 7700 900123">
+          </div>
+        </div>
+
+        <div class="modal__foot">
+          <button type="submit" class="btn btn--primary btn--block btn--lg" id="payBtn" disabled>Confirm and pay</button>
+          <p class="hint" id="payHint">Enter your name and email to continue.</p>
+        </div>
+      </form>
+
+      <!-- Step 2: success -->
+      <div class="modal__success" id="bookingSuccess" hidden>
+        <span class="success-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+        <h2 class="modal__title">Booking confirmed</h2>
+        <p class="muted">Terima kasih, <span id="okName"></span>. Your ticket has been sent to <strong id="okEmail"></strong>.</p>
+        <dl class="receipt">
+          <div><dt>Booking ID</dt><dd class="mono" id="okId"></dd></div>
+          <div><dt>Trip</dt><dd id="okTrip"></dd></div>
+          <div><dt>Date</dt><dd id="okDate"></dd></div>
+          <div><dt>Paid</dt><dd id="okPaid"></dd></div>
+          <div><dt>To conservation</dt><dd class="text-eco" id="okEco"></dd></div>
+        </dl>
+        <button type="button" class="btn btn--primary btn--block" data-close>Done</button>
+        <p class="hint">This window closes automatically.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast__icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+    <div>
+      <p class="toast__title" id="toastTitle"></p>
+      <p class="toast__msg" id="toastMsg"></p>
+    </div>
+    <button type="button" class="toast__close" id="toastClose" aria-label="Dismiss">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+</body>
+</html>
