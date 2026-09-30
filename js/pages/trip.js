@@ -1,4 +1,4 @@
-/* TripEase Coastal — trip detail page + checkout */
+
 (function () {
   'use strict';
   const TE = window.TE;
