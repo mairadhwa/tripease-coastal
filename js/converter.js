@@ -1,8 +1,3 @@
-/* ==========================================================================
-   TripEase Coastal — currency converter component
-   Live rates from open.er-api.com (≈160 currencies, updated daily),
-   Frankfurter as backup, offline estimates as last resort (see core.js).
-   ========================================================================== */
 
 (function () {
   'use strict';
