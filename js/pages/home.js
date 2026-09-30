@@ -1,10 +1,9 @@
-/* TripEase Coastal — home page */
+
 (function () {
   'use strict';
   const TE = window.TE;
   const D = TE.DESTINATIONS;
 
-  /* Search widget options */
   const dest = TE.$('#hsDest');
   TE.REGIONS.forEach((r) => {
     const list = D.filter((d) => d.region === r);
@@ -25,31 +24,29 @@
     location.href = 'search.html?' + p.toString();
   });
 
-  /* Tabs */
+
   const tabs = TE.$$('.searchbox__tab[role="tab"]');
   tabs.forEach((t) => t.addEventListener('click', () => {
     tabs.forEach((x) => { x.setAttribute('aria-selected', String(x === t)); TE.$('#' + x.getAttribute('aria-controls')).hidden = x !== t; });
   }));
   TE.$('#tab-ai').addEventListener('click', () => TE.assistant.open());
 
-  /* Converters */
+
   TE.converter(TE.$('#heroConverter'), { amount: 1000000, from: 'IDR', to: 'USD', quick: false });
   const main = TE.converter(TE.$('#mainConverter'), { amount: 2500000, from: 'IDR', to: 'SGD' });
   TE.$('#showPricesIn').addEventListener('click', TE.openCurrencyPicker);
   document.addEventListener('te:currency', (e) => { if (e.detail !== 'IDR') main.setTo(e.detail); });
 
-  /* Hidden gems carousel (highest rated, fewest reviews first = most "hidden") */
   const gems = D.slice().sort((a, b) => a.reviews - b.reviews);
   TE.$('#gemTrack').innerHTML = gems.map(TE.card).join('');
   TE.rail(TE.$('#gemRail'));
 
-  /* Activities */
+
   TE.$('#acts').innerHTML = Object.keys(TE.ACTIVITIES).map((k) => {
     const n = D.filter((d) => d.activities.includes(k)).length;
     return `<a class="act" href="search.html?act=${k}"><span class="act__icon">${TE.icon(TE.ACTIVITIES[k].icon, 22)}</span><span>${TE.ACTIVITIES[k].label}<small>${n} destination${n === 1 ? '' : 's'}</small></span></a>`;
   }).join('');
 
-  /* Map */
   const list = TE.$('#mapList');
   list.innerHTML = D.map((d) => `
     <button type="button" class="map-item" data-id="${d.id}">
@@ -64,7 +61,7 @@
     if (m) m.focus(b.dataset.id); else location.href = 'trip.html?id=' + b.dataset.id;
   });
 
-  /* AI shortcuts */
+
   document.addEventListener('click', (e) => {
     const q = e.target.closest('[data-ai-q]');
     if (q) TE.assistant.open(q.dataset.aiQ);
