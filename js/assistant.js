@@ -1,17 +1,3 @@
-/* ==========================================================================
-   TripEase Coastal — Coastal AI assistant (floating chat widget)
-   --------------------------------------------------------------------------
-   Answers from the destination database (js/data/destinations.js):
-   local food, where to shop, best season, how to get there, activities,
-   prices, recommendations by activity or month — plus Indonesian phrases
-   and etiquette. Understands simple English and Indonesian questions.
-
-   provider: 'local'  Built-in engine, no API key. Default for demos.
-             'proxy'  RECOMMENDED for a real AI: your own backend keeps the
-                      key and calls OpenAI/Gemini with the database as context.
-             'gemini' / 'openai'  Direct browser calls — private demos only.
-   Never commit a real API key to a public GitHub repository.
-   ========================================================================== */
 
 (function () {
   'use strict';
@@ -20,14 +6,12 @@
   const AI_CONFIG = {
     provider: 'local',
     apiKey: '',
-    geminiModel: 'gemini-2.0-flash',   // check current model names in the provider docs
+    geminiModel: 'gemini-2.0-flash',  
     openaiModel: 'gpt-4o-mini',
     proxyUrl: '/api/coastal-assistant'
   };
 
-  /* ------------------------------------------------------------------ */
-  /* 1. Local knowledge engine                                           */
-  /* ------------------------------------------------------------------ */
+
   const ALIASES = {
     kei: ['kei', 'kai islands', 'ngurbloat', 'pasir panjang', 'langgur', 'tual'],
     togean: ['togean', 'togian', 'ampana', 'wakai', 'kadidiri', 'tojo una'],
@@ -200,9 +184,7 @@
       chips: ['Recommend a hidden gem', 'Local food in Kei Islands', 'Where to shop in Alor', 'How do I greet an elder?'] };
   }
 
-  /* ------------------------------------------------------------------ */
-  /* 2. Real AI providers (optional)                                    */
-  /* ------------------------------------------------------------------ */
+
   function systemPrompt() {
     const kb = TE.DESTINATIONS.map((d) => ({ id: d.id, name: d.name, province: d.province, why: d.why, highlights: d.highlights,
       bestTime: d.bestTime, gettingThere: d.gettingThere, food: d.food, shopping: d.shopping, etiquette: d.etiquette,
@@ -242,9 +224,7 @@ Reply ONLY as JSON: {"title": string, "text": string, "list": [{"name": string, 
     return localAnswer(question);
   }
 
-  /* ------------------------------------------------------------------ */
-  /* 3. Chat widget UI                                                  */
-  /* ------------------------------------------------------------------ */
+
   const root = document.createElement('div');
   root.className = 'ai';
   root.innerHTML = `
@@ -361,7 +341,7 @@ Reply ONLY as JSON: {"title": string, "text": string, "list": [{"name": string, 
   chips.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) ask(b.textContent); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) setOpen(false); });
 
-  /* Public API used by pages */
+
   TE.assistant = {
     open(question) { setOpen(true); if (question) setTimeout(() => ask(question), 150); },
     setContext(id) { ctx.dest = TE.getDestination(id) || null; },
