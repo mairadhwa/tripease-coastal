@@ -1,4 +1,4 @@
-/* TripEase Coastal — search results page */
+
 (function () {
   'use strict';
   const TE = window.TE;
@@ -18,7 +18,7 @@
     view: 'list'
   };
 
-  /* ---------- build filter controls ---------- */
+
   const count = (fn) => D.filter(fn).length;
   TE.$('#fActs').innerHTML = Object.keys(TE.ACTIVITIES).map((k) =>
     `<label class="check"><input type="checkbox" value="${k}" ${state.act.includes(k) ? 'checked' : ''}> ${TE.ACTIVITIES[k].label}<small>${count((d) => d.activities.includes(k))}</small></label>`).join('');
@@ -40,7 +40,7 @@
     TE.$('#fPriceVal').innerHTML = TE.price(state.maxPrice) + (state.maxPrice >= 4000000 ? '+' : '');
   };
 
-  /* ---------- filtering ---------- */
+
   const month = () => (state.date ? new Date(state.date + 'T00:00:00').getMonth() + 1 : null);
 
   function matches(d) {
@@ -83,7 +83,7 @@
       ? list.map((d) => TE.rcard(d, { month: month(), guests: state.guests, qs })).join('')
       : `<div class="empty"><strong>No trips match your filters</strong><p>Try removing a filter or choosing another date.</p><button type="button" class="btn btn--ghost" data-reset>Reset all filters</button></div>`;
 
-    // active filter chips
+
     const chips = [];
     if (state.q) chips.push(['q', '', `“${state.q}”`]);
     state.act.forEach((a) => chips.push(['act', a, TE.ACTIVITIES[a].label]));
@@ -103,7 +103,7 @@
     showPrice();
   }
 
-  /* ---------- events ---------- */
+
   TE.$('#searchForm').addEventListener('submit', (e) => {
     e.preventDefault();
     state.q = TE.$('#sQ').value.trim();
