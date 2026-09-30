@@ -1,15 +1,4 @@
-/* ==========================================================================
-   TripEase Coastal — destination database
-   --------------------------------------------------------------------------
-   Every trip, card, map pin and AI answer is generated from this file.
-   To add a destination, copy one object and change the values.
 
-   PHOTOS: put your own photo at  assets/img/destinations/<id>.jpg
-   (e.g. assets/img/destinations/kei.jpg). If that file is missing, the
-   illustrative Unsplash photo in `photo` is used instead.
-
-   Prices are prototype figures in IDR per person (open trip).
-   ========================================================================== */
 
 window.TE = window.TE || {};
 
