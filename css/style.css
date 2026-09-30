@@ -1,8 +1,3 @@
-/* ==========================================================================
-   TripEase Coastal — stylesheet
-   Colours come from the logo: deep navy, ocean blue and wave aqua.
-   Orange is used only for the main booking actions.
-   ========================================================================== */
 
 :root {
   --navy: #0a2a5c;
@@ -37,7 +32,7 @@
   --header-h: 72px;
 }
 
-/* ---------- base ---------- */
+/*background*/
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 12px); }
@@ -76,7 +71,7 @@ fieldset { border: 0; padding: 0; min-width: 0; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.is-in { opacity: 1; transform: none; }
 
-/* ---------- buttons & inputs ---------- */
+/* buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   height: 44px; padding: 0 18px; border-radius: var(--r-sm); border: 1px solid transparent;
@@ -113,7 +108,7 @@ select.input { appearance: none; padding-right: 34px;
 .icon-btn:hover { border-color: var(--ink-3); }
 .icon-btn:disabled { opacity: .35; cursor: not-allowed; }
 
-/* ---------- header ---------- */
+/*header */
 .site-header { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 0 var(--line); transition: background-color .25s, box-shadow .25s; }
 .site-header__inner { height: var(--header-h); display: flex; align-items: center; gap: 20px; }
 .brand { flex-shrink: 0; display: block; }
@@ -160,7 +155,6 @@ select.input { appearance: none; padding-right: 34px;
 .site-header--overlay.is-scrolled .pill-btn--solid, .site-header--overlay.is-open .pill-btn--solid { background: var(--blue-soft); border-color: transparent; color: var(--blue); }
 .site-header--overlay.is-scrolled .icon-toggle, .site-header--overlay.is-open .icon-toggle { color: var(--navy); }
 
-/* ---------- hero ---------- */
 .hero { position: relative; min-height: 640px; padding: calc(var(--header-h) + 48px) 0 120px; color: #fff; overflow: hidden; background: var(--navy); }
 .hero__bg { position: absolute; inset: 0; }
 .hero__bg img { width: 100%; height: 100%; object-fit: cover; animation: kenburns 24s ease-out both; }
@@ -174,7 +168,7 @@ select.input { appearance: none; padding-right: 34px;
 .hero__wave { position: absolute; left: 0; right: 0; bottom: -1px; z-index: 1; color: var(--bg-soft); }
 .hero__wave svg { width: 100%; height: 70px; display: block; }
 
-/* search widget (Traveloka-style) */
+/* search widget */
 .searchbox { position: relative; z-index: 2; margin-top: 28px; max-width: 1000px; background: #fff; color: var(--ink); border-radius: var(--r-lg); box-shadow: var(--sh-3); }
 .searchbox__tabs { display: flex; gap: 4px; padding: 8px 8px 0; border-bottom: 1px solid var(--line); overflow-x: auto; }
 .searchbox__tab { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px 12px; border: 0; background: none; font-weight: 700; font-size: 14px; color: var(--ink-3); border-bottom: 3px solid transparent; white-space: nowrap; }
@@ -193,7 +187,6 @@ select.input { appearance: none; padding-right: 34px;
 .searchbox__hint .ico { color: var(--eco); }
 .searchbox__hint span { display: inline-flex; align-items: center; gap: 5px; }
 
-/* ---------- converter ---------- */
 .conv { display: grid; gap: 10px; grid-template-columns: 1fr; align-items: end; }
 @media (min-width: 720px) { .conv { grid-template-columns: 1fr auto 1fr; } }
 .conv__side { display: grid; grid-template-columns: 1fr 170px; gap: 8px; }
@@ -210,7 +203,7 @@ select.input { appearance: none; padding-right: 34px;
 .rate-status i { width: 8px; height: 8px; border-radius: 50%; background: var(--eco); }
 .rate-status.is-offline i { background: var(--star); }
 
-/* ---------- promo strip ---------- */
+
 .promos { margin-top: -64px; position: relative; z-index: 3; }
 .promo-row { display: grid; gap: 12px; grid-template-columns: 1fr; }
 @media (min-width: 720px) { .promo-row { grid-template-columns: repeat(3, 1fr); } }
@@ -222,7 +215,7 @@ select.input { appearance: none; padding-right: 34px;
 .promo--b .promo__icon { background: var(--eco-soft); color: var(--eco); }
 .promo--c .promo__icon { background: #fff1e6; color: var(--cta); }
 
-/* ---------- carousel / cards ---------- */
+
 .rail { position: relative; }
 .rail__track { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; scrollbar-width: none; }
 .rail__track::-webkit-scrollbar { display: none; }
@@ -261,7 +254,7 @@ select.input { appearance: none; padding-right: 34px;
 .dcard__price small { display: block; font-size: 11px; color: var(--ink-3); }
 .dcard__price strong { font-size: 17px; color: var(--cta); }
 
-/* activity tiles */
+
 .acts { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); }
 @media (min-width: 640px) { .acts { grid-template-columns: repeat(4, 1fr); } }
 .act { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: var(--r); background: #fff; border: 1px solid var(--line); font-weight: 700; transition: border-color .15s, box-shadow .15s; }
@@ -269,7 +262,7 @@ select.input { appearance: none; padding-right: 34px;
 .act__icon { width: 40px; height: 40px; border-radius: 10px; background: var(--aqua-soft); color: var(--blue); display: inline-flex; align-items: center; justify-content: center; }
 .act small { display: block; font-weight: 500; font-size: 12px; color: var(--ink-3); }
 
-/* map */
+
 .map-wrap { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 960px) { .map-wrap { grid-template-columns: 1fr 340px; } }
 .map { height: 460px; border-radius: var(--r); overflow: hidden; background: var(--aqua-soft); box-shadow: var(--sh-1); z-index: 0; }
@@ -287,7 +280,7 @@ select.input { appearance: none; padding-right: 34px;
 .map-pop a { color: var(--blue); font-weight: 700; }
 .map-fallback { height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; color: var(--ink-2); }
 
-/* why / impact / steps */
+
 .features { display: grid; gap: 14px; grid-template-columns: 1fr; }
 @media (min-width: 640px) { .features { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .features { grid-template-columns: repeat(4, 1fr); } }
@@ -334,7 +327,7 @@ select.input { appearance: none; padding-right: 34px;
 .cta-banner h2 { font-size: 20px; color: var(--navy); }
 .cta-banner p { color: var(--ink-2); }
 
-/* ---------- footer ---------- */
+/* footer*/
 .site-footer { background: var(--navy); color: rgba(255,255,255,.8); padding: 48px 0 24px; margin-top: 48px; }
 .site-footer__grid { display: grid; gap: 28px; grid-template-columns: 1fr 1fr; }
 .site-footer__brand { grid-column: 1 / -1; max-width: 380px; }
@@ -357,7 +350,6 @@ select.input { appearance: none; padding-right: 34px;
 .crumbs a { color: var(--blue); }
 .crumbs span::before { content: '›'; margin-right: 6px; color: var(--ink-3); }
 
-/* ---------- search results page ---------- */
 .searchbar { background: var(--navy); padding: 14px 0; }
 .searchbar .sgrid { background: #fff; padding: 10px; border-radius: var(--r); }
 .results { display: grid; gap: 20px; grid-template-columns: 1fr; padding: 20px 0 0; }
@@ -418,7 +410,6 @@ select.input { appearance: none; padding-right: 34px;
 .empty p { color: var(--ink-2); margin: 6px 0 16px; }
 .results-map { height: 560px; }
 
-/* ---------- trip detail ---------- */
 .gallery { display: grid; gap: 8px; grid-template-columns: 1fr; border-radius: var(--r); overflow: hidden; }
 .gallery__main { aspect-ratio: 16 / 9; }
 @media (min-width: 720px) {
@@ -508,7 +499,7 @@ select.input { appearance: none; padding-right: 34px;
 body.has-mobile-book { padding-bottom: 72px; }
 @media (min-width: 1024px) { body.has-mobile-book { padding-bottom: 0; } }
 
-/* ---------- modal / checkout ---------- */
+
 .modal { width: calc(100% - 24px); max-width: 620px; max-height: calc(100vh - 32px); margin: auto; padding: 0; border: 0; border-radius: var(--r-lg); box-shadow: var(--sh-3); overflow: hidden; color: var(--ink); }
 .modal--sm { max-width: 520px; }
 .modal::backdrop { background: rgba(6, 22, 48, .55); }
@@ -556,7 +547,6 @@ body.has-mobile-book { padding-bottom: 72px; }
 .va button { font-family: inherit; font-size: 12px; border: 0; background: none; color: var(--blue); font-weight: 700; }
 .note { font-size: 12px; color: var(--ink-3); }
 
-/* e-ticket */
 .ticket { border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
 .ticket__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; background: linear-gradient(120deg, var(--navy), #0f56a8); color: #fff; }
 .ticket__top img { height: 34px; width: auto; }
@@ -574,7 +564,7 @@ body.has-mobile-book { padding-bottom: 72px; }
 @keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .success-head h3 { font-size: 20px; color: var(--navy); }
 
-/* ---------- bookings page ---------- */
+/* bookings page  */
 .bk { display: grid; grid-template-columns: 1fr; background: #fff; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 12px; }
 @media (min-width: 720px) { .bk { grid-template-columns: 180px 1fr auto; } }
 .bk__media { aspect-ratio: 16 / 9; }
@@ -589,7 +579,7 @@ body.has-mobile-book { padding-bottom: 72px; }
 .status--cancelled { background: #fdecea; color: var(--danger); }
 .bk__actions { display: flex; gap: 8px; }
 
-/* ---------- partner page ---------- */
+/*partner page  */
 .partner-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
 @media (min-width: 960px) { .partner-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
 .benefits { display: grid; gap: 12px; margin-top: 16px; }
@@ -602,7 +592,7 @@ body.has-mobile-book { padding-bottom: 72px; }
 .timeline li.is-done { color: var(--ink); font-weight: 700; }
 .timeline li.is-done::before { background: var(--eco); border-color: var(--eco); }
 
-/* ---------- AI chat widget ---------- */
+/* AI chat widget  */
 .ai__fab { position: fixed; right: 16px; bottom: 16px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; height: 52px; padding: 0 18px 0 10px; border: 0; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 800; box-shadow: 0 10px 30px rgba(10,42,92,.35); transition: transform .2s; }
 .ai__fab img { width: 34px; height: 34px; border-radius: 50%; background: #fff; padding: 3px; object-fit: contain; }
 .ai__fab:hover { transform: translateY(-2px); }
@@ -654,14 +644,14 @@ body.has-mobile-book .ai__fab { bottom: 84px; }
 .ai__send { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--blue); color: #fff; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .ai__send:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ---------- toast ---------- */
+/* toast  */
 .toast { position: fixed; left: 50%; top: 20px; z-index: 100; width: calc(100% - 32px); max-width: 420px; display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: var(--r); background: var(--navy); color: #fff; box-shadow: var(--sh-3); transform: translate(-50%, -20px); opacity: 0; visibility: hidden; transition: transform .25s, opacity .25s, visibility .25s; }
 .toast.is-visible { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
 .toast__icon { width: 24px; height: 24px; border-radius: 50%; background: var(--eco); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .toast__title { font-weight: 700; }
 .toast__msg { font-size: 13px; color: rgba(255,255,255,.75); }
 
-/* ---------- print (e-ticket) ---------- */
+
 @media print {
   body * { visibility: hidden; }
   .print-area, .print-area * { visibility: visible; }
@@ -669,7 +659,7 @@ body.has-mobile-book .ai__fab { bottom: 84px; }
   .modal { box-shadow: none; }
 }
 
-/* ---------- layout safety: let grid children shrink ---------- */
+
 .sfield, .sfield__box, .trip-layout > *, .results > *, .map-wrap > *, .partner-grid > *, .conv > * { min-width: 0; }
 .panel, .tabs { max-width: 100%; }
 @media (max-width: 600px) {
