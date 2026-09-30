@@ -43,44 +43,6 @@ python -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-## Publish on GitHub Pages
-
-1. Create a new repository on GitHub, for example `tripease-coastal`.
-2. Upload the contents of this folder (or push with git):
-   ```bash
-   git init
-   git add .
-   git commit -m "TripEase Coastal prototype"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/tripease-coastal.git
-   git push -u origin main
-   ```
-3. In the repository, go to **Settings → Pages**, set **Source** to *Deploy from a branch*, choose `main` and `/ (root)`, then save.
-4. After a minute the site is live at `https://<your-username>.github.io/tripease-coastal/`.
-
-## Customising
-
-**Trips and prices.** Edit `js/data.js`. Each trip has a price per person, a private-trip surcharge, a daily quota and an image URL. The catalog and checkout update automatically.
-
-**Revenue split.** Change `REVENUE_SPLIT` in `js/data.js`. Also update the matching text in the Impact section of `index.html`.
-
-**Colours.** All colours are CSS variables at the top of `css/style.css` (`--accent`, `--eco`, and so on).
-
-**Photos.** The prototype uses Unsplash images linked by URL. For the final version, put your own photos in `assets/` and change the `img` paths in `js/data.js` (e.g. `assets/gelasa.jpg`).
-
-## Connecting a real AI model
-
-The assistant uses an offline keyword engine by default. To use a real model, open `js/assistant.js` and change `provider` in `AI_CONFIG`:
-
-| provider | What it does |
-|----------|--------------|
-| `mock`   | Offline keyword matching. Default. |
-| `proxy`  | Sends the question to your own backend (`proxyUrl`), which calls OpenAI or Gemini with a secret key. **Use this for a public site.** |
-| `openai` | Calls OpenAI directly from the browser. For private demos only. |
-| `gemini` | Calls Google Gemini directly from the browser. For private demos only. |
-
-**Never commit an API key to a public repository.** Anything in front-end JavaScript can be read by anyone who visits the page. For a public GitHub Pages site, use `proxy` with a small serverless function (e.g. Vercel, Netlify or Cloudflare Workers) that keeps the key server-side.
-
 ## Credits
 
 Concept: *TripEase Coastal: A Community-Based Coastal Marine Tourism Digital Platform for Economic Equalization and Global Competitiveness of Indonesia's Coastal Destinations.*
