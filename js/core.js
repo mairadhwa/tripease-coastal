@@ -1,14 +1,8 @@
-/* ==========================================================================
-   TripEase Coastal — shared core
-   Header, footer, currency, formatting, storage, toast, images, icons.
-   Loaded on every page after js/data/destinations.js.
-   ========================================================================== */
 
 (function () {
   'use strict';
   const TE = (window.TE = window.TE || {});
 
-  /* ---------- tiny helpers ---------- */
   TE.$ = (s, r) => (r || document).querySelector(s);
   TE.$$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   TE.sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -23,7 +17,7 @@
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } }
   };
 
-  /* ---------- icons (inline SVG, stroke-based) ---------- */
+
   const P = {
     search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
     pin: '<path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
@@ -65,9 +59,7 @@
   };
   TE.icon = (name, size) => `<svg class="ico" width="${size || 18}" height="${size || 18}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[name] || ''}</svg>`;
 
-  /* ---------- images with fallbacks ---------- */
-  // Tries assets/img/destinations/<id>.jpg first, then the Unsplash photo,
-  // then leaves the ocean gradient placeholder visible.
+
   TE.imgFallback = function (img) {
     const next = img.dataset.fb;
     if (next) { img.dataset.fb = ''; img.src = next; return; }
@@ -76,8 +68,7 @@
   TE.destImg = (d, cls) =>
     `<img class="${cls || ''}" src="assets/img/destinations/${d.id}.jpg" data-fb="${d.photo}" alt="${TE.esc(d.name)}, ${TE.esc(d.province)}" loading="lazy" onerror="TE.imgFallback(this)">`;
 
-  /* ---------- currency ---------- */
-  // Offline estimate (IDR per 1 unit) used only if both live sources fail.
+
   const OFFLINE_IDR_PER_UNIT = {
     USD: 16300, EUR: 18900, GBP: 21900, AUD: 10600, NZD: 9700, CAD: 11900, CHF: 20300,
     JPY: 110, CNY: 2270, HKD: 2090, TWD: 540, KRW: 11.8, SGD: 12700, MYR: 3850, THB: 500,
@@ -91,8 +82,8 @@
 
   const cur = (TE.currency = {
     code: TE.store.get('te_currency', 'IDR'),
-    rates: null,          // units of foreign currency per 1 IDR
-    source: 'loading',    // 'live' | 'offline'
+    rates: null,          
+    source: 'loading',    
     updated: null,
     names: (() => { try { return new Intl.DisplayNames(['en'], { type: 'currency' }); } catch (e) { return null; } })()
   });
@@ -157,12 +148,11 @@
     } catch (e) { return code + ' ' + value.toFixed(2); }
   };
 
-  // Format an IDR amount in the visitor's chosen currency.
+
   TE.money = (idr) => {
     if (cur.code === 'IDR' || !cur.rates || !cur.rates[cur.code]) return cur.fmt(idr, 'IDR');
     return cur.fmt(idr * cur.rates[cur.code], cur.code);
   };
-  // Markup that re-renders automatically when the currency changes.
   TE.price = (idr) => `<span data-idr="${idr}">${TE.money(idr)}</span>`;
 
   cur.refreshPrices = function () {
@@ -177,7 +167,7 @@
     document.dispatchEvent(new CustomEvent('te:currency', { detail: code }));
   };
 
-  /* ---------- toast ---------- */
+
   TE.toast = function (title, msg) {
     let t = TE.$('#te-toast');
     if (!t) {
@@ -191,7 +181,7 @@
     t._timer = setTimeout(() => t.classList.remove('is-visible'), 4500);
   };
 
-  /* ---------- bookings (saved in this browser) ---------- */
+
   TE.bookings = {
     all: () => TE.store.get('te_bookings', []),
     add(b) { const list = TE.bookings.all(); list.unshift(b); TE.store.set('te_bookings', list); TE.updateBookingBadge(); },
@@ -202,7 +192,7 @@
     TE.$$('[data-booking-count]').forEach((el) => { el.textContent = n; el.hidden = n === 0; });
   };
 
-  /* ---------- header & footer ---------- */
+
   const page = document.body.dataset.page || '';
   const navItem = (href, label, key) => `<a href="${href}" class="${page === key ? 'is-active' : ''}">${label}</a>`;
 
@@ -293,7 +283,7 @@
       </div>`;
   }
 
-  /* ---------- currency picker dialog ---------- */
+
   function openCurrencyPicker() {
     let dlg = TE.$('#currencyDialog');
     if (!dlg) {
@@ -339,7 +329,7 @@
   }
   TE.openCurrencyPicker = openCurrencyPicker;
 
-  /* ---------- in-page smooth scroll with header offset ---------- */
+
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href*="#"]');
     if (!a) return;
@@ -353,7 +343,7 @@
     history.replaceState(null, '', url.hash);
   });
 
-  /* ---------- counters & bars when scrolled into view ---------- */
+
   TE.observeCounters = function (root) {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const io = new IntersectionObserver((entries, obs) => {
@@ -377,7 +367,7 @@
     TE.$$('[data-counter],[data-bar]', root).forEach((n) => io.observe(n));
   };
 
-  /* ---------- reveal on scroll ---------- */
+ 
   TE.observeReveal = function () {
     if (!('IntersectionObserver' in window)) return;
     const io = new IntersectionObserver((entries, obs) => {
@@ -386,14 +376,14 @@
     TE.$$('.reveal').forEach((n) => io.observe(n));
   };
 
-  /* ---------- declarative icons: <span data-icon="leaf"> ---------- */
+
   TE.hydrateIcons = (root) => TE.$$('[data-icon]', root).forEach((el) => {
     if (el.dataset.iconDone) return;
     el.dataset.iconDone = '1';
     el.insertAdjacentHTML('afterbegin', TE.icon(el.dataset.icon, parseInt(el.dataset.iconSize || '18', 10)));
   });
 
-  /* ---------- boot ---------- */
+
   TE.hydrateIcons();
   renderHeader();
   renderFooter();
