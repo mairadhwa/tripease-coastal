@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My bookings · TripEase Coastal</title>
+  <meta name="theme-color" content="#0a2a5c">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="bookings">
+
+  <header id="site-header"></header>
+
+  <div class="pagebar">
+    <div class="container">
+      <h1>My bookings</h1>
+      <p>Bookings made on this device. In the prototype they are stored in your browser only.</p>
+    </div>
+  </div>
+
+  <main class="container" style="padding-top:20px">
+    <div class="toolbar">
+      <div class="seg" role="group" aria-label="Filter bookings">
+        <button type="button" aria-pressed="true" data-f="upcoming">Upcoming</button>
+        <button type="button" aria-pressed="false" data-f="past">Past</button>
+        <button type="button" aria-pressed="false" data-f="cancelled">Cancelled</button>
+      </div>
+      <a href="search.html" class="btn btn--primary btn--sm" data-icon="search">Book another trip</a>
+    </div>
+    <div id="bkList"></div>
+
+    <div class="sec-head" style="margin-top:32px"><div><h2>Your wishlist</h2><p>Trips you saved with the heart button.</p></div></div>
+    <div class="rail" id="wishRail">
+      <button class="rail__btn rail__btn--prev" type="button" aria-label="Previous" data-icon="left"></button>
+      <div class="rail__track" id="wishTrack"></div>
+      <button class="rail__btn rail__btn--next" type="button" aria-label="Next" data-icon="right"></button>
+    </div>
+  </main>
+
+  <dialog class="modal" id="ticketDlg" aria-labelledby="tkTitle">
+    <div class="modal__head"><h2 class="modal__title" id="tkTitle">E-ticket</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Close" data-icon="close" data-icon-size="16"></button></div>
+    <div class="modal__body print-area" id="tkBody"></div>
+    <div class="modal__foot"><span></span><button type="button" class="btn btn--primary" data-print data-icon="print">Print / save as PDF</button></div>
+  </dialog>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data/destinations.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/pages/bookings.js"></script>
+</body>
+</html>

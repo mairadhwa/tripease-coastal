@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripEase Coastal · Community coastal trips in Indonesia</title>
+  <meta name="description" content="Book community-run trips to Indonesia's hidden coastal destinations. Verified by local Pokdarwis and BUMDes, with 20% of every booking funding conservation.">
+  <meta property="og:title" content="TripEase Coastal">
+  <meta property="og:description" content="Community-run coastal trips to Indonesia's hidden islands.">
+  <meta property="og:image" content="assets/img/icon-512.png">
+  <meta name="theme-color" content="#0a2a5c">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script>/* hero photo fallback, runs before the main scripts load */
+    window.TE = { imgFallback: function (i) { var n = i.dataset.fb; if (n) { i.dataset.fb = ''; i.src = n; } else { i.classList.add('is-missing'); } } };</script>
+</head>
+<body data-page="home" class="has-hero">
+
+  <header id="site-header"></header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__bg">
+        <!-- Your own hero photo: save it as assets/img/hero.jpg (landscape, ≥1920px wide) -->
+        <img src="assets/img/hero.jpg" data-fb="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" alt="" onerror="TE.imgFallback(this)" fetchpriority="high">
+      </div>
+      <div class="container hero__inner">
+        <span class="hero__kicker">Community-based coastal tourism · Indonesia</span>
+        <h1>Discover Indonesia's hidden coast with the people who live there.</h1>
+        <p class="hero__lead">Book trips run by fishing and island villages you won't find on the usual itinerary. Every host is verified by their village's Pokdarwis or BUMDes.</p>
+
+        <div class="searchbox">
+          <div class="searchbox__tabs" role="tablist" aria-label="Search options">
+            <button class="searchbox__tab" role="tab" id="tab-trips" aria-selected="true" aria-controls="panel-trips" data-icon="boat">Trips &amp; tours</button>
+            <button class="searchbox__tab" role="tab" id="tab-cur" aria-selected="false" aria-controls="panel-cur" data-icon="swap">Currency converter</button>
+            <button class="searchbox__tab" type="button" id="tab-ai" data-icon="chat">Ask Coastal AI</button>
+          </div>
+
+          <div class="searchbox__panel" id="panel-trips" role="tabpanel" aria-labelledby="tab-trips">
+            <form class="sgrid" id="heroSearch" action="search.html">
+              <div class="sfield">
+                <label for="hsDest">Destination</label>
+                <div class="sfield__box" data-icon="pin"><select id="hsDest" name="dest"><option value="">All hidden gems</option></select></div>
+              </div>
+              <div class="sfield">
+                <label for="hsAct">Activity</label>
+                <div class="sfield__box" data-icon="wave"><select id="hsAct" name="act"><option value="">Any activity</option></select></div>
+              </div>
+              <div class="sfield">
+                <label for="hsDate">Travel date</label>
+                <div class="sfield__box" data-icon="calendar"><input type="date" id="hsDate" name="date"></div>
+              </div>
+              <div class="sfield">
+                <label for="hsGuests">Guests</label>
+                <div class="sfield__box" data-icon="users"><select id="hsGuests" name="guests">
+                  <option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option>
+                  <option value="4">4 guests</option><option value="6">6 guests</option><option value="8">8 guests</option></select></div>
+              </div>
+              <button type="submit" class="btn btn--cta" data-icon="search">Search trips</button>
+            </form>
+            <div class="searchbox__hint">
+              <span data-icon="check">Free cancellation up to 7 days before</span>
+              <span data-icon="check">Verified local hosts</span>
+              <span data-icon="check">20% to conservation</span>
+            </div>
+          </div>
+
+          <div class="searchbox__panel" id="panel-cur" role="tabpanel" aria-labelledby="tab-cur" hidden>
+            <div id="heroConverter"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="currentColor" d="M0,40 C180,70 360,10 540,30 C720,50 900,70 1080,45 C1260,20 1350,30 1440,40 L1440,70 L0,70 Z"/></svg>
+      </div>
+    </section>
+
+    <!-- Promo strip -->
+    <section class="promos">
+      <div class="container promo-row">
+        <div class="promo promo--a reveal"><span class="promo__icon" data-icon="shield" data-icon-size="22"></span><div><h3>Verified by the village</h3><p>Every host is checked by the local Pokdarwis or BUMDes.</p></div></div>
+        <div class="promo promo--b reveal"><span class="promo__icon" data-icon="leaf" data-icon-size="22"></span><div><h3>20% to conservation</h3><p>Reefs, mangroves and turtles, funded by every booking.</p></div></div>
+        <div class="promo promo--c reveal"><span class="promo__icon" data-icon="users" data-icon-size="22"></span><div><h3>70% stays local</h3><p>Paid directly to homestays, boat owners and guides.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Hidden gems carousel -->
+    <section class="section" id="gems">
+      <div class="container">
+        <div class="sec-head">
+          <div><h2>Hidden coastal gems</h2><p>Quiet islands with big potential — and very few visitors, for now.</p></div>
+          <a href="search.html" class="link">See all trips ›</a>
+        </div>
+        <div class="rail" id="gemRail">
+          <button class="rail__btn rail__btn--prev" type="button" aria-label="Previous" data-icon="left"></button>
+          <div class="rail__track" id="gemTrack"></div>
+          <button class="rail__btn rail__btn--next" type="button" aria-label="Next" data-icon="right"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Browse by activity -->
+    <section class="section section--white">
+      <div class="container">
+        <div class="sec-head"><div><h2>What do you want to do?</h2><p>Browse trips by activity.</p></div></div>
+        <div class="acts" id="acts"></div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="section" id="map">
+      <div class="container">
+        <div class="sec-head"><div><h2>Destination map</h2><p>From Aceh to North Maluku — tap a pin to see the trip.</p></div></div>
+        <div class="map-wrap">
+          <div class="map" id="homeMap" aria-label="Map of partner destinations"></div>
+          <div class="map-list" id="mapList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI promo -->
+    <section class="section section--white">
+      <div class="container">
+        <div class="ai-promo reveal">
+          <div>
+            <span class="tag">New · Coastal AI</span>
+            <h2 style="margin-top:10px">Your local guide before you land</h2>
+            <p>Ask what to eat, where to buy souvenirs, when to go and how to get there. Coastal AI answers from our partner villages' own notes — in English or Bahasa Indonesia — and teaches you the phrases you'll need.</p>
+            <button type="button" class="btn btn--primary" data-ai-open data-icon="chat">Chat with Coastal AI</button>
+          </div>
+          <div class="ai-promo__qs">
+            <button type="button" data-ai-q="What should I eat in the Kei Islands?" data-icon="food">What should I eat in the Kei Islands?</button>
+            <button type="button" data-ai-q="Where can I buy souvenirs in Alor?" data-icon="bag">Where can I buy souvenirs in Alor?</button>
+            <button type="button" data-ai-q="Best snorkelling in October" data-icon="mask">Best snorkelling in October?</button>
+            <button type="button" data-ai-q="How to get to Togean Islands" data-icon="boat">How do I get to the Togean Islands?</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Currency -->
+    <section class="section" id="currency">
+      <div class="container">
+        <div class="sec-head">
+          <div><h2>Currency converter</h2><p>Live exchange rates for around 160 currencies. Asian currencies are listed first.</p></div>
+          <button type="button" class="btn btn--ghost btn--sm" id="showPricesIn" data-icon="globe">Show all prices in my currency</button>
+        </div>
+        <div class="panel" style="padding:24px"><div id="mainConverter"></div></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section section--white" id="how">
+      <div class="container">
+        <div class="sec-head"><div><h2>How TripEase Coastal works</h2><p>Technology that strengthens local communities instead of replacing them.</p></div></div>
+        <ol class="steps">
+          <li class="step reveal"><h3>Local onboarding</h3><p>Pokdarwis or BUMDes verify homestays, boat operators, cooks and craft makers.</p></li>
+          <li class="step reveal"><h3>Guide training</h3><p>Basic English, hospitality and safety training with university partners (KKN, internships).</p></li>
+          <li class="step reveal"><h3>Online booking</h3><p>Compare open or private trips, see what's included and pay securely online.</p></li>
+          <li class="step reveal"><h3>The trip</h3><p>A verified local guide leads every trip. Daily quotas protect each site.</p></li>
+          <li class="step reveal"><h3>Impact reporting</h3><p>You rate the trip, and the conservation share is reported back to the village.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="section" id="impact">
+      <div class="container">
+        <div class="impact">
+          <span class="sim-tag">Pilot projection · simulated</span>
+          <h2>Impact tracker</h2>
+          <p>What the platform aims to deliver across its partner villages in the pilot year.</p>
+          <div class="impact__stats">
+            <div class="istat"><b data-counter data-target="1248">0</b><span>Trips booked</span></div>
+            <div class="istat"><b data-counter data-target="812" data-prefix="Rp " data-suffix=" M">Rp 0 M</b><span>Paid to local operators</span></div>
+            <div class="istat"><b data-counter data-target="232" data-prefix="Rp " data-suffix=" M">Rp 0 M</b><span>Conservation fund</span></div>
+            <div class="istat"><b data-counter data-target="46">0</b><span>Local guides certified</span></div>
+          </div>
+          <div class="split">
+            <div class="split__bar" role="img" aria-label="70% local operators, 20% conservation, 10% platform">
+              <i class="c-local" data-bar data-width="70"></i><i class="c-eco" data-bar data-width="20"></i><i class="c-plat" data-bar data-width="10"></i>
+            </div>
+            <div class="split__legend">
+              <span><i class="c-local"></i>70% local operators</span>
+              <span><i class="c-eco"></i>20% conservation</span>
+              <span><i class="c-plat"></i>10% platform</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner CTA -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-banner">
+          <div><h2>Run a homestay, boat or guiding service?</h2><p>Join through your village's Pokdarwis or BUMDes. No upfront fee.</p></div>
+          <a href="partner.html" class="btn btn--primary">Register as a partner</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/data/destinations.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/converter.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

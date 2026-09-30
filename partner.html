@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a local partner · TripEase Coastal</title>
+  <meta name="description" content="Homestays, boat operators, guides and craft makers can join TripEase Coastal through their village Pokdarwis or BUMDes.">
+  <meta name="theme-color" content="#0a2a5c">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="partner">
+
+  <header id="site-header"></header>
+
+  <div class="pagebar">
+    <div class="container">
+      <h1>Become a local partner</h1>
+      <p>For homestays, boat operators, guides, cooks and craft makers in coastal villages.</p>
+    </div>
+  </div>
+
+  <main class="container section" style="padding-top:24px">
+    <div class="partner-grid">
+      <div>
+        <h2 style="color:var(--navy);font-size:22px">We work through your village, not around it</h2>
+        <p class="muted" style="margin-top:8px">TripEase Coastal partners with Pokdarwis (village tourism groups) and BUMDes (village-owned enterprises). They verify every listing, set daily visitor limits and help coordinate guides.</p>
+        <div class="benefits">
+          <div class="benefit"><span class="feature__icon" data-icon="users"></span><div><b>70% of every booking</b><span>Paid to local operators through your village institution.</span></div></div>
+          <div class="benefit"><span class="feature__icon" data-icon="star"></span><div><b>Free guide training</b><span>Basic English, hospitality and safety with university partners.</span></div></div>
+          <div class="benefit"><span class="feature__icon" data-icon="shield"></span><div><b>Your village sets the limits</b><span>Daily quotas protect your reefs, beaches and community life.</span></div></div>
+          <div class="benefit"><span class="feature__icon" data-icon="leaf"></span><div><b>20% for your environment</b><span>A conservation fund for your destination, managed with the village.</span></div></div>
+          <div class="benefit"><span class="feature__icon" data-icon="card"></span><div><b>No upfront fee</b><span>The platform only earns a 10% commission on completed bookings.</span></div></div>
+        </div>
+      </div>
+
+      <div class="panel" style="padding:24px">
+        <form id="pForm" novalidate style="display:grid;gap:14px">
+          <h2 style="margin:0">Partner registration</h2>
+          <p class="muted small" style="margin-top:-8px">Prototype form — nothing is sent.</p>
+          <div class="field"><label for="pName">Business or guide name</label><input id="pName" class="input" autocomplete="organization" required><p class="field__error">Please enter a name.</p></div>
+          <div class="row-2">
+            <div class="field"><label for="pType">Service type</label>
+              <select id="pType" class="input" required><option value="">Select…</option><option>Homestay</option><option>Boat operator</option><option>Local guide</option><option>Food &amp; culinary</option><option>Handicrafts</option></select>
+              <p class="field__error">Choose a service type.</p></div>
+            <div class="field"><label for="pInst">Verified through</label>
+              <select id="pInst" class="input" required><option value="">Select…</option><option>Pokdarwis</option><option>BUMDes</option></select>
+              <p class="field__error">Choose an institution.</p></div>
+          </div>
+          <div class="field"><label for="pDest">Nearest destination</label>
+            <select id="pDest" class="input" required><option value="">Select…</option></select><p class="field__error">Choose a destination.</p></div>
+          <div class="field"><label for="pVillage">Village and regency</label><input id="pVillage" class="input" placeholder="e.g. Desa Ohoililir, Maluku Tenggara" required><p class="field__error">Please enter your village.</p></div>
+          <div class="row-2">
+            <div class="field"><label for="pPhone">WhatsApp</label><input id="pPhone" class="input" type="tel" required><p class="field__error">Enter a phone number.</p></div>
+            <div class="field"><label for="pEmail">Email</label><input id="pEmail" class="input" type="email" required><p class="field__error">Enter a valid email.</p></div>
+          </div>
+          <label class="check"><input type="checkbox" id="pEnglish"> Our team can already guide in basic English</label>
+          <button type="submit" class="btn btn--primary btn--lg" id="pSubmit">Submit for verification</button>
+        </form>
+
+        <div id="pDone" hidden style="text-align:center">
+          <div class="success-icon" data-icon="check" data-icon-size="28"></div>
+          <h2 style="color:var(--navy)">Application received</h2>
+          <p class="muted" id="pDoneText" style="margin:8px 0 18px"></p>
+          <ol class="timeline">
+            <li class="is-done">Application submitted</li>
+            <li>Verification visit by your Pokdarwis / BUMDes</li>
+            <li>Guide training and listing photos</li>
+            <li>Live on TripEase Coastal</li>
+          </ol>
+          <button type="button" class="btn btn--ghost" id="pAgain">Register another service</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/data/destinations.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/assistant.js"></script>
+  <script>
+    (function () {
+      const TE = window.TE;
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      const dest = TE.$('#pDest');
+      TE.DESTINATIONS.forEach((d) => dest.insertAdjacentHTML('beforeend', `<option value="${d.id}">${d.name}, ${d.province}</option>`));
+      const ids = ['#pName', '#pType', '#pInst', '#pDest', '#pVillage', '#pPhone', '#pEmail'];
+      const ok = (el) => el.type === 'email' ? EMAIL_RE.test(el.value.trim()) : el.type === 'tel' ? el.value.replace(/\D/g, '').length >= 8 : el.value.trim() !== '';
+      const mark = (el, bad) => el.closest('.field').classList.toggle('has-error', bad);
+      ids.forEach((s) => TE.$(s).addEventListener(TE.$(s).tagName === 'SELECT' ? 'change' : 'input', (e) => { if (ok(e.target)) mark(e.target, false); }));
+      TE.$('#pForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let first = null;
+        ids.forEach((s) => { const el = TE.$(s); const bad = !ok(el); mark(el, bad); if (bad && !first) first = el; });
+        if (first) { first.focus(); return; }
+        const btn = TE.$('#pSubmit');
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Submitting…';
+        await TE.sleep(1200);
+        const ref = 'PTR-' + Date.now().toString(36).toUpperCase().slice(-5);
+        TE.$('#pDoneText').textContent = `Reference ${ref}. The ${TE.$('#pInst').value} in ${TE.$('#pVillage').value.trim()} will contact you on WhatsApp to arrange verification.`;
+        TE.$('#pForm').hidden = true; TE.$('#pDone').hidden = false;
+        btn.disabled = false; btn.textContent = 'Submit for verification';
+        TE.toast('Application submitted', ref);
+      });
+      TE.$('#pAgain').addEventListener('click', () => { TE.$('#pForm').reset(); TE.$('#pDone').hidden = true; TE.$('#pForm').hidden = false; });
+    })();
+  </script>
+</body>
+</html>

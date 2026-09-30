@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip details · TripEase Coastal</title>
+  <meta name="description" content="Community-run coastal trip details: itinerary, local food, shopping, how to get there and booking.">
+  <meta name="theme-color" content="#0a2a5c">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="trip" class="has-mobile-book">
+
+  <header id="site-header"></header>
+
+  <main class="container" id="trip"></main>
+
+  <!-- Mobile sticky booking bar -->
+  <div class="mobile-book" id="mobileBook">
+    <div><small>From, per person</small><strong id="mbPrice"></strong></div>
+    <a href="#book" class="btn btn--cta">Select date</a>
+  </div>
+
+  <!-- Checkout -->
+  <dialog class="modal" id="checkout" aria-labelledby="coTitle">
+    <div class="modal__head">
+      <h2 class="modal__title" id="coTitle">Checkout</h2>
+      <button type="button" class="icon-btn" data-close aria-label="Close" data-icon="close" data-icon-size="16"></button>
+    </div>
+    <div class="stepper-nav" id="coSteps">
+      <span data-step="1"><i>1</i> Guest details</span>
+      <span data-step="2"><i>2</i> Payment</span>
+      <span data-step="3"><i>3</i> E-ticket</span>
+    </div>
+
+    <!-- Step 1 -->
+    <form id="coStep1" class="modal__body" novalidate>
+      <div class="order-mini" id="coOrder"></div>
+      <div class="field">
+        <label for="coName">Full name (as on passport or ID)</label>
+        <input id="coName" class="input" autocomplete="name" required>
+        <p class="field__error">Please enter your full name.</p>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label for="coEmail">Email</label>
+          <input id="coEmail" class="input" type="email" autocomplete="email" required>
+          <p class="field__error">Enter a valid email for your e-ticket.</p>
+        </div>
+        <div class="field">
+          <label for="coPhone">Mobile / WhatsApp</label>
+          <input id="coPhone" class="input" type="tel" autocomplete="tel" placeholder="+62 812 3456 7890" required>
+          <p class="field__error">Enter a phone number your guide can reach.</p>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label for="coCountry">Country</label>
+          <select id="coCountry" class="input"></select>
+        </div>
+        <div class="field">
+          <label for="coDiet">Dietary needs</label>
+          <select id="coDiet" class="input">
+            <option>None</option><option>Vegetarian</option><option>Vegan</option><option>No seafood / allergy</option><option>Nut allergy</option><option>Halal only</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="coNote">Message to your local host <span class="muted">(optional)</span></label>
+        <textarea id="coNote" class="input" rows="2" style="height:auto;padding:10px 12px" placeholder="e.g. first time snorkelling, arriving on the afternoon ferry"></textarea>
+      </div>
+    </form>
+
+    <!-- Step 2 -->
+    <form id="coStep2" class="modal__body" novalidate hidden>
+      <div class="timer" data-icon="clock">Complete payment within <b id="coTimer">15:00</b> to hold your spots</div>
+      <div class="paylist">
+        <div class="payopt">
+          <label><input type="radio" name="pay" value="card" checked> <span data-icon="card"></span> Credit / debit card <small>Visa · Mastercard · JCB</small></label>
+          <div class="payopt__body">
+            <div class="field"><label for="ccNum">Card number</label><input id="ccNum" class="input" inputmode="numeric" autocomplete="cc-number" placeholder="4111 1111 1111 1111" maxlength="19"><p class="field__error">Enter a 16-digit card number.</p></div>
+            <div class="row-2">
+              <div class="field"><label for="ccExp">Expiry</label><input id="ccExp" class="input" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5"><p class="field__error">Use MM/YY.</p></div>
+              <div class="field"><label for="ccCvc">CVC</label><input id="ccCvc" class="input" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4"><p class="field__error">3–4 digits.</p></div>
+            </div>
+            <p class="note">Prototype: use any test number, e.g. 4111 1111 1111 1111. Nothing is charged.</p>
+          </div>
+        </div>
+        <div class="payopt">
+          <label><input type="radio" name="pay" value="qris"> <span data-icon="qr"></span> QRIS <small>GoPay · OVO · DANA · ShopeePay</small></label>
+          <div class="payopt__body"><div class="qr-box"><span id="qrisCode"></span><p class="note">Scan with any Indonesian e-wallet or mobile banking app, then press <b>Pay</b> to simulate a completed payment.</p></div></div>
+        </div>
+        <div class="payopt">
+          <label><input type="radio" name="pay" value="va"> <span data-icon="bank"></span> Bank transfer (virtual account) <small>BCA · Mandiri · BNI · BRI</small></label>
+          <div class="payopt__body">
+            <select class="input" id="vaBank"><option>BCA</option><option>Mandiri</option><option>BNI</option><option>BRI</option></select>
+            <div class="va"><span id="vaNum"></span><button type="button" id="vaCopy">Copy</button></div>
+          </div>
+        </div>
+        <div class="payopt">
+          <label><input type="radio" name="pay" value="paypal"> <span data-icon="globe"></span> PayPal <small>For international travellers</small></label>
+          <div class="payopt__body"><p class="note">You would be redirected to PayPal to log in and approve the payment. In this prototype, press <b>Pay</b> to simulate it.</p></div>
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="coTerms"> I agree to the booking terms and the village's visitor guidelines.</label>
+    </form>
+
+    <!-- Step 3 -->
+    <div id="coStep3" class="modal__body print-area" hidden></div>
+
+    <div class="modal__foot" id="coFoot">
+      <div><small>Total payment</small><strong id="coTotal"></strong></div>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn btn--ghost" id="coBack" hidden>Back</button>
+        <button type="button" class="btn btn--cta" id="coNext">Continue to payment</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer id="site-footer"></footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/data/destinations.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/pages/trip.js"></script>
+</body>
+</html>

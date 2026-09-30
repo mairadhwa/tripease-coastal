@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore coastal trips · TripEase Coastal</title>
+  <meta name="description" content="Search community-run coastal trips across Indonesia by activity, season, price and region.">
+  <meta name="theme-color" content="#0a2a5c">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="search">
+
+  <header id="site-header"></header>
+
+  <div class="searchbar">
+    <div class="container">
+      <form class="sgrid" id="searchForm">
+        <div class="sfield">
+          <label for="sQ">Search</label>
+          <div class="sfield__box" data-icon="search"><input id="sQ" type="search" placeholder="Island, province or activity" autocomplete="off"></div>
+        </div>
+        <div class="sfield">
+          <label for="sAct">Activity</label>
+          <div class="sfield__box" data-icon="wave"><select id="sAct"><option value="">Any activity</option></select></div>
+        </div>
+        <div class="sfield">
+          <label for="sDate">Travel date</label>
+          <div class="sfield__box" data-icon="calendar"><input type="date" id="sDate"></div>
+        </div>
+        <div class="sfield">
+          <label for="sGuests">Guests</label>
+          <div class="sfield__box" data-icon="users"><select id="sGuests">
+            <option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option>
+            <option value="4">4 guests</option><option value="6">6 guests</option><option value="8">8 guests</option><option value="10">10 guests</option></select></div>
+        </div>
+        <button type="submit" class="btn btn--cta" data-icon="search">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <main class="container">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>Explore trips</span></nav>
+
+    <div class="results" style="padding-top:0">
+      <aside class="filters" id="filters" aria-label="Filters">
+        <h3>Filters <button type="button" id="clearAll">Reset</button></h3>
+        <button type="button" class="icon-btn filters__close" id="closeFilters" aria-label="Close filters" style="position:absolute;top:12px;right:12px" data-icon="close"></button>
+
+        <div class="fgroup">
+          <p>Max price per person</p>
+          <input type="range" class="range" id="fPrice" min="500000" max="4000000" step="100000" value="4000000" aria-label="Maximum price per person">
+          <div class="range-val"><span id="fPriceMin"></span><strong id="fPriceVal"></strong></div>
+        </div>
+        <div class="fgroup"><p>Activities</p><div id="fActs"></div></div>
+        <div class="fgroup"><p>Region</p><div id="fRegions"></div></div>
+        <div class="fgroup">
+          <p>Trip length</p>
+          <label class="check"><input type="radio" name="fLen" value="" checked> Any length</label>
+          <label class="check"><input type="radio" name="fLen" value="short"> 2–3 days</label>
+          <label class="check"><input type="radio" name="fLen" value="long"> 4–5 days</label>
+        </div>
+        <div class="fgroup">
+          <p>Guest rating</p>
+          <label class="check"><input type="radio" name="fRate" value="0" checked> Any</label>
+          <label class="check"><input type="radio" name="fRate" value="4.7"> Excellent 4.7+</label>
+          <label class="check"><input type="radio" name="fRate" value="4.85"> Exceptional 4.85+</label>
+        </div>
+        <div class="fgroup">
+          <label class="check"><input type="checkbox" id="fSeason"> Only destinations in season on my date</label>
+        </div>
+        <div class="filters__apply"><button type="button" class="btn btn--primary btn--block" id="applyFilters">Show results</button></div>
+      </aside>
+
+      <section aria-label="Results">
+        <div class="toolbar">
+          <div>
+            <h2 id="resultTitle">Coastal trips</h2>
+            <p class="muted small" id="resultCount"></p>
+          </div>
+          <div class="toolbar__right">
+            <button type="button" class="btn btn--ghost btn--sm filters-toggle" id="openFilters" data-icon="filter">Filters</button>
+            <label class="sr-only" for="sort">Sort by</label>
+            <select class="input" id="sort">
+              <option value="rec">Recommended</option>
+              <option value="price">Lowest price</option>
+              <option value="price-desc">Highest price</option>
+              <option value="rating">Top rated</option>
+              <option value="hidden">Most hidden</option>
+            </select>
+            <div class="seg" role="group" aria-label="View">
+              <button type="button" aria-pressed="true" data-view="list" data-icon="menu">List</button>
+              <button type="button" aria-pressed="false" data-view="map" data-icon="map">Map</button>
+            </div>
+          </div>
+        </div>
+        <div class="chips-active" id="activeChips"></div>
+        <div id="resultList"></div>
+        <div class="map results-map" id="resultMap" hidden></div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/data/destinations.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/assistant.js"></script>
+  <script src="js/pages/search.js"></script>
+</body>
+</html>
