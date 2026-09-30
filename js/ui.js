@@ -1,13 +1,9 @@
-/* ==========================================================================
-   TripEase Coastal — shared UI components
-   Destination cards, result cards, carousels, map, wishlist, QR codes.
-   ========================================================================== */
 
 (function () {
   'use strict';
   const TE = window.TE;
 
-  /* ---------- wishlist (saved in this browser) ---------- */
+
   TE.wish = {
     all: () => TE.store.get('te_wish', []),
     has: (id) => TE.wish.all().includes(id),
@@ -31,7 +27,7 @@
 
   const saveBtn = (d) => `<button type="button" class="dcard__save ${TE.wish.has(d.id) ? 'is-saved' : ''}" data-save="${d.id}" aria-label="Save ${TE.esc(d.name)}">${TE.icon('heart', 16)}</button>`;
 
-  /* ---------- destination card (carousels) ---------- */
+
   TE.card = (d) => `
     <a class="dcard" href="trip.html?id=${d.id}">
       <div class="dcard__media media">
@@ -48,7 +44,7 @@
       </div>
     </a>`;
 
-  /* ---------- result card (search page) ---------- */
+
   const scoreWord = (r) => (r >= 4.85 ? 'Exceptional' : r >= 4.7 ? 'Excellent' : 'Very good');
   TE.scoreWord = scoreWord;
   TE.rcard = (d, opts) => {
@@ -93,7 +89,6 @@
       </article>`;
   };
 
-  /* ---------- carousel arrows ---------- */
   TE.rail = (root) => {
     const track = TE.$('.rail__track', root);
     const prev = TE.$('.rail__btn--prev', root);
@@ -110,7 +105,6 @@
     update();
   };
 
-  /* ---------- map (Leaflet, bundled in vendor/leaflet) ---------- */
   TE.makeMap = (el, dests, opts) => {
     opts = opts || {};
     if (!window.L) {
@@ -145,7 +139,6 @@
     };
   };
 
-  /* ---------- decorative QR-style code (prototype only) ---------- */
   TE.qrSvg = (text) => {
     const n = 25; let h = 2166136261;
     for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
@@ -188,7 +181,7 @@
         <p class="note">Prototype: no real payment was made and no email is sent. Your booking is saved in this browser under “My bookings”.</p>` : ''}`;
   };
 
-  /* ---------- sample reviews (clearly labelled as prototype content) ---------- */
+
   const REVIEWERS = [['Emma', 'Netherlands'], ['Kenji', 'Japan'], ['Sofia', 'Spain'], ['Liam', 'Australia'], ['Mei Ling', 'Singapore'], ['Jonas', 'Germany'], ['Aisha', 'Malaysia'], ['Daniel', 'United Kingdom']];
   TE.sampleReviews = (d) => {
     const t = [
