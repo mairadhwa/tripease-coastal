@@ -1,4 +1,4 @@
-/* TripEase Coastal — My bookings */
+
 (function () {
   'use strict';
   const TE = window.TE;
@@ -72,7 +72,6 @@
     if (e.target.closest('[data-print]')) window.print();
   });
 
-  // Two-tap cancel instead of a browser confirm() dialog
   function confirmCancel(btn) {
     if (btn.dataset.armed) return true;
     btn.dataset.armed = '1';
